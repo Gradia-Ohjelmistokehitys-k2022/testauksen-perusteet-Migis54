@@ -12,10 +12,11 @@ namespace FileOperations
     {
 
         public static void Main(string[] args)
-        {
-            List<string> list = new List<string>();
-            List<string> systemConfig = ReadFile(list,"s", "s");
+        {  
+            List<string> systemConfig= new List<string>();
+            systemConfig = ReadFile(systemConfig, "C:\\Windows", "\\system.ini");
             PrintFile(systemConfig);
+            Console.ReadKey();
         }
 
         private static void PrintFile(List<string> systemConfig)

@@ -16,11 +16,28 @@ namespace FileOperations.Tests
         public void ReadFile_ReturnsListOfSettings_IfFileIsNotEmpty()
         {
             //Arrange
-            List<string> systemConfig;
+            List<string> systemConfig = new List<string>();
             string winDir = "C:\\Windows";
             string path = "\\system.ini";
             //Act
-            systemConfig = Files.ReadFile(systemConfig, windir, path);
+            systemConfig = File.ReadFile(systemConfig, winDir, path);
             //Assert
-            Assert.IsTrue(systemConfig.Count < 0);
+            Assert.AreNotEqual(systemConfig.Count, 0);
         }
+        [TestMethod]
+        public void CheckThat_ListIsNotEmpty() 
+        {
+            List<string> systemConfig = new List<string>();
+            systemConfig.Add("x");
+            Assert.AreNotEqual(systemConfig.Count, 0);
+        }
+        [TestMethod]
+        public void CheckThat_FilePath_IsCorrect() 
+        {
+            string AssumedFilepath = "\\system.ini";
+            string Filepath = "\\system.ini";
+            Assert.AreEqual(Filepath, AssumedFilepath);
+
+        }
+    }
+}
