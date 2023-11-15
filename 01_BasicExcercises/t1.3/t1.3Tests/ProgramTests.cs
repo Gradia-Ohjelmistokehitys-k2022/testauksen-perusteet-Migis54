@@ -23,7 +23,7 @@ namespace t1._3.Tests
         public void Kattoo_Että_syöttö_Ei_Ole_negatiivinen_Jos_Ei_Niin_Anna_False() 
         {
             Program rogrammi = new Program();
-            rogrammi.syöttö = "1";
+            rogrammi.syöttö = "2";
             Assert.IsTrue(rogrammi.Syöttö_Ei_Ole_miinus_luku(rogrammi.syöttö, 0));
         }
     }

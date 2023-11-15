@@ -19,7 +19,7 @@ namespace FileOperations
             Console.ReadKey();
         }
 
-        private static void PrintFile(List<string> systemConfig)
+        public static void PrintFile(List<string> systemConfig)
         {
             foreach (var item in systemConfig)
             {

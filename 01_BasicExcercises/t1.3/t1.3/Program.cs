@@ -30,7 +30,7 @@ namespace t1._3
             }
             else
             {
-                Console.WriteLine("teit kaiken väärin, häpeä");
+                Console.WriteLine(rogrammi.num1);
             }
             Console.ReadKey();
 
