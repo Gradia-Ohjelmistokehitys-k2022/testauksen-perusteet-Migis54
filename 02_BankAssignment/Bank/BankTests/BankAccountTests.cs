@@ -45,7 +45,7 @@ namespace Bank.Tests
             // Arrange
             double beginningBalance = 11.99;
             double debitAmount = 20.0;
-            BankAccount account = new BankAccount("Mr. Bryan Walton", beginningBalance);
+            BankAccount account = new BankAccount("Mr.Walter White", beginningBalance);
 
             // Act
             try
@@ -60,29 +60,6 @@ namespace Bank.Tests
             }
 
             Assert.Fail("The expected exception was not thrown.");
-        }
-        [TestMethod()]
-        public void BankAccountTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void DebitTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void CreditTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void MainTest()
-        {
-            Assert.Fail();
         }
     }
 }

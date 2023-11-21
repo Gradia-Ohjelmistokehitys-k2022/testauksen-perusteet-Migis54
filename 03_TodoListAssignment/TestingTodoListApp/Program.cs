@@ -16,7 +16,6 @@ namespace TodoListNS
             TodoList todoList = new TodoList();
 
             todoList.AddItemToList(new TodoTask("Do the dishes"));
-          
             todoList.AddItemToList(new TodoTask("Wash your clothes"));
             var list = todoList.All; //for iterations
             var anotherList = todoList._TodoItems; //original style of getting list

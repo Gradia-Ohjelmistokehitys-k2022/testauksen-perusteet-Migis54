@@ -16,7 +16,7 @@ namespace FileOperations.Tests
     {
           
         [TestMethod]
-        public void ReadFile_ReturnsListOfSettings_IfFileIsNotEmpty()
+        public void ReadFile_IfFileIsNotEmpty_ReturnsListOfSettings()
         {
             //Arrange
             List<string> systemConfig = new List<string>();
@@ -28,11 +28,11 @@ namespace FileOperations.Tests
             Assert.IsTrue(systemConfig.Count > 0);
         }
         [TestMethod]
-        public void ReadFile_WrongPath_throwexception() 
+        public void ReadFile_IFWrongPath_throwexception() 
         {
             List<string> systemConfig = new List<string>();
             string winDir = "C:\\Windows";
-            string path = "\\sywhwieghghwstem.ini";
+            string path = "\\sysggrtem.ini";
             try 
             {
                 systemConfig = File.ReadFile(systemConfig, winDir, path);

@@ -25,6 +25,10 @@ namespace TestingTodoListApp
         {
 
             _todoItems.Add(item with { Id = _taskCounter++ });
+            if(item.TaskDescription == string.Empty)
+            {
+                throw new ArgumentException("Task lacks name");
+            }
 
         }
 
@@ -36,9 +40,18 @@ namespace TestingTodoListApp
 
         public void CompleteItem(int id)
         {
+            if(!_todoItems.Any(x => x.Id == id))
+            {
+                throw new ArgumentOutOfRangeException("idk");
+            }
+            if(_todoItems.Count > 100)
+            {
+                throw new ArgumentOutOfRangeException("too many items");
+            }
             // remove the item
             var item = _todoItems.First(x => x.Id == id);
             RemoveItemFromList(item);
+            
         }
     }
 }

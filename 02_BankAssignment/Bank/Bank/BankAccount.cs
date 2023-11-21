@@ -14,7 +14,7 @@ namespace Bank
         public const string DebitAmountExceedsBalanceMessage = "Debit amount exceeds balance";
         public const string DebitAmountLessThanZeroMessage = "Debit amount is less than zero";
         private readonly string m_customerName;
-        private double m_balance;
+        public double m_balance;
 
         private BankAccount() { }
 
@@ -59,7 +59,7 @@ namespace Bank
             m_balance += amount;
         }
 
-        public static void Main()
+        public  void Main()
         {
             BankAccount ba = new BankAccount("Mr. Walter White", 11.99);
 
