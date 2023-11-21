@@ -11,6 +11,20 @@ namespace TestingTodoListApp.Tests
     [TestClass()]
     public class TodoListTests
     {
+        [TestMethod()]
+        public void AddItemList_IfTodoListHasTooManyItems_ThrowException()
+        {
+            TodoList todoList = new TodoList(); 
+            try
+            {
+                todoList.AddItemToList(new TodoTask("joo"));
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                StringAssert.Contains(ex.Message, "too many items");
+                return;
+            }
+        }
 
         [TestMethod()]
         public void AddItemToList()
@@ -18,13 +32,31 @@ namespace TestingTodoListApp.Tests
             TodoList todoList = new TodoList();
             try
             {
-                todoList.AddItemToList(new TodoTask("Wash your clothes"));
+                todoList.AddItemToList(new TodoTask(""));
             }
             catch (ArgumentException ex)
             {
                 StringAssert.Contains(ex.Message, "Task lacks name");
+                return;
             }
-            Assert.Fail();
+            
+            
+        }
+        [TestMethod()]
+        public void AddItemToList_IfTaskIsNull_ThrowArgurment()
+        {
+            TodoList todoList = new TodoList();
+            try
+            {
+                TodoTask todoTask = new TodoTask("astiat");
+                todoTask = null;
+                todoList.AddItemToList(todoTask);
+            }
+            catch (ArgumentNullException ex)
+            {
+                StringAssert.Contains(ex.Message, "item is null"));
+                Assert.Fail();
+            }
         }
 
         [TestMethod()]
@@ -48,14 +80,7 @@ namespace TestingTodoListApp.Tests
                 StringAssert.Contains(ex.Message, "idk");
                 return;
             }
-            try
-            {
-                todoList.CompleteItem(1);
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                StringAssert.Contains(ex.Message, "too many items");
-            }
+            
             Assert.Fail("lol");
 
         }

@@ -29,6 +29,14 @@ namespace TestingTodoListApp
             {
                 throw new ArgumentException("Task lacks name");
             }
+            if (_todoItems.Count > 100)
+            {
+                throw new ArgumentOutOfRangeException("too many items");
+            }
+            if(item == null)
+            {
+                throw new ArgumentNullException("item is null");
+            }
 
         }
 
@@ -44,10 +52,7 @@ namespace TestingTodoListApp
             {
                 throw new ArgumentOutOfRangeException("idk");
             }
-            if(_todoItems.Count > 100)
-            {
-                throw new ArgumentOutOfRangeException("too many items");
-            }
+            
             // remove the item
             var item = _todoItems.First(x => x.Id == id);
             RemoveItemFromList(item);
