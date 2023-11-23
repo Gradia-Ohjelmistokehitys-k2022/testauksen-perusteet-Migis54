@@ -14,20 +14,25 @@ namespace TestingTodoListApp.Tests
         [TestMethod()]
         public void AddItemList_IfTodoListHasTooManyItems_ThrowException()
         {
-            TodoList todoList = new TodoList(); 
+            TodoList todoList = new TodoList();
             try
             {
-                todoList.AddItemToList(new TodoTask("joo"));
+                todoList.AddItemToList(new TodoTask("joo1"));
+                todoList.AddItemToList(new TodoTask("joo2"));
+                todoList.AddItemToList(new TodoTask("joo3"));
+                todoList.AddItemToList(new TodoTask("joo4"));
+                todoList .AddItemToList(new TodoTask("e"));
             }
             catch (ArgumentOutOfRangeException ex)
             {
                 StringAssert.Contains(ex.Message, "too many items");
                 return;
             }
+            Assert.Fail();
         }
 
         [TestMethod()]
-        public void AddItemToList()
+        public void AddItemToList_IfTaskLacksName_ThrowException()
         {
             TodoList todoList = new TodoList();
             try
@@ -39,8 +44,8 @@ namespace TestingTodoListApp.Tests
                 StringAssert.Contains(ex.Message, "Task lacks name");
                 return;
             }
-            
-            
+            Assert.Fail();
+
         }
         [TestMethod()]
         public void AddItemToList_IfTaskIsNull_ThrowArgurment()
@@ -54,17 +59,67 @@ namespace TestingTodoListApp.Tests
             }
             catch (ArgumentNullException ex)
             {
-                StringAssert.Contains(ex.Message, "item is null"));
-                Assert.Fail();
+                StringAssert.Contains(ex.Message, "item is null");
+                return;
             }
+            Assert.Fail();
         }
-
         [TestMethod()]
-        public void RemoveItemFromList()
+        public void RemoveItemFromList_IfItemDoesntExist_ThrowException()
         {
-            
+            TodoList todoList = new TodoList();
+            TodoTask todoTask = new TodoTask("astiat");
+            todoList.AddItemToList(todoTask);
+            try
+            {
+                
+                todoList.RemoveItemFromList(todoTask);
+               
+            }
+            catch(ArgumentOutOfRangeException ex)
+            {
+                StringAssert.Contains(ex.Message, "item doesn't exist");
+                return;
+            }
+            Assert.Fail();
         }
+        [TestMethod()]
+        public void RemoveItemFromList_IfTaskIsNull_ThrowException()
+        {
+            TodoList todoList = new TodoList();
+            TodoTask todoTask = new TodoTask("astiat");
+            
+            todoList.AddItemToList(todoTask);
+            try
+            {
+                todoTask = null;
+                todoList.RemoveItemFromList(todoTask);
 
+            }
+            catch (ArgumentNullException ex)
+            {
+                StringAssert.Contains(ex.Message, "item is null");
+                return;
+            }
+            Assert.Fail();
+        }
+        [TestMethod()]
+        public void RemoveItemFromList_IfDoesntRemoveItem_ThrowException()
+        {
+            TodoList todoList = new TodoList();
+            TodoTask todoTask = new TodoTask("astiat");
+            todoList.AddItemToList(todoTask);
+            try
+            {
+                todoList.RemoveItemFromList(todoTask);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                StringAssert.Contains(ex.Message, "didnt remove item");
+                return;
+            }
+            Assert.Fail();
+        }
         [TestMethod()]
         public void CompleteItem_IfIdDoesntExist_ThrowException()
         {
@@ -80,7 +135,40 @@ namespace TestingTodoListApp.Tests
                 StringAssert.Contains(ex.Message, "idk");
                 return;
             }
-            
+
+            Assert.Fail("lol");
+        }
+        [TestMethod()]
+        public void CompleteItem_IftodoItemtEmpty_ThrowException()
+        {
+            TodoList todoList = new TodoList();
+            try
+            {
+                todoList.CompleteItem(1);
+            }
+            catch (ArgumentException ex)
+            {
+                StringAssert.Contains(ex.Message, "TaskList is empty");
+                return;
+            }
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void CompleteItem_IfTaskCompletedAlready_ThrowException()
+        {
+            TodoList todoList = new TodoList();
+            todoList.AddItemToList(new TodoTask("Do the dishes"));
+            todoList.CompleteItem(1);
+            try
+            {
+                todoList.CompleteItem(1);
+            }
+            catch(ArgumentException ex)
+            {
+                StringAssert.Contains(ex.Message, "already completed");
+                return;
+            }
             Assert.Fail("lol");
 
         }
