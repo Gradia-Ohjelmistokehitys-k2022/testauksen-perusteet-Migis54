@@ -1,4 +1,5 @@
-﻿using Warehouse;
+﻿using System.Data.SqlTypes;
+using Warehouse;
 
 
 namespace WareHouse
@@ -19,15 +20,14 @@ namespace WareHouse
             _stockOfItems.Add(item2);
             _stockOfItems.Add(item3);
         }
-
-        public WareHouse()
-        {
-
-        }
-
+        public WareHouse(){}
         public void AddToStocks(string itemName, int itemCount)
         {
             Stock stock = new(itemName, itemCount);
+            if(_stockOfItems.Contains(stock))
+            {
+                throw new ArgumentException("stock is already in list");
+            }
             _stockOfItems.Add(stock);
         }
 
