@@ -11,6 +11,7 @@ namespace WareHouse
         private List<Stock> _stockOfItems;
         public void WareHouseSimulator()
         {
+            
             _stockOfItems = new();
             Stock item1 = new("Hat", 2);
             Stock item2 = new("Shoes", 3);
@@ -47,12 +48,16 @@ namespace WareHouse
             }
             else
             {
-                throw new Exception("Oversold " + stock.ItemName);
+                throw new ArgumentException("Oversold");
             }
         }
 
         public int StockCount(string itemName)
         {
+            if(itemName == null)
+            {
+                throw new ArgumentNullException("Item Name Null");
+            }
             var matches = _stockOfItems.Where(item => item.ItemName == itemName);
             return matches.Count();
         }
