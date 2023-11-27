@@ -25,15 +25,16 @@ namespace WareHouse
         public void AddToStocks(string itemName, int itemCount)
         {
             Stock stock = new(itemName, itemCount);
-            if(_stockOfItems.Contains(stock))
+            if(itemName == string.Empty)
             {
-                throw new ArgumentException("stock is already in list");
+                throw new ArgumentException("itemName empty");
             }
             _stockOfItems.Add(stock);
         }
 
         public bool InStock(string itemName)
         {
+            
             return _stockOfItems.Any(item => item.ItemName == itemName && item.Quantity > 0);
         }
 

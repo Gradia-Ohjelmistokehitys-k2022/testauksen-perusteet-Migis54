@@ -12,21 +12,23 @@ namespace WareHouse.Tests
     [TestClass()]
     public class WareHouseTests
     {
-        private List<Stock> _stockOfItems;
+        
         
         [TestMethod()]
         public void AddToStock_IfItemInStockAlready_ThrowException()
         {
             WareHouse wareHouse = new();
+            wareHouse.WareHouseSimulator();  
             try
             {
                 
-                wareHouse.AddToStocks("hat", 2);
-                wareHouse.AddToStocks("hat2", 2);
+                
+                wareHouse.AddToStocks("", 2);
+                
             }
             catch (ArgumentException ex)
             {
-                StringAssert.Contains(ex.Message, "stock is already in list");
+                StringAssert.Contains(ex.Message, "itemName empty");
                 return;
             }
             Assert.Fail();
@@ -35,7 +37,7 @@ namespace WareHouse.Tests
         public void TakeFromStock_IfItemNotInStock_ThrowException()
         {
             WareHouse wareHouse = new();
-            _stockOfItems = new();
+            wareHouse.WareHouseSimulator();
             Stock item1 = new("hat", 2);
             //_stockOfItems.Add(item1 );
             try
@@ -50,10 +52,26 @@ namespace WareHouse.Tests
             Assert.Fail();
         }
         [TestMethod()]
+        public void InStock_IfFlase_ThrowException()
+        {
+            WareHouse wareHouse = new();
+            wareHouse.WareHouseSimulator();
+            
+            try
+            {
+                Assert.IsTrue(wareHouse.InStock("hat"));
+            }
+            catch(AssertFailedException)
+            {
+                return;
+            }
+            Assert.Fail();
+        }
+        [TestMethod()]
         public void StockCount_IfItemNameIsNull_ThrowException()
         {
             WareHouse wareHouse = new();
-            _stockOfItems = new();
+            wareHouse.WareHouseSimulator();
             string x = null;
             try
             {
