@@ -12,7 +12,7 @@ namespace TestingTodoListApp.Tests
     public class TodoListTests
     {
         [TestMethod()]
-        public void AddItemList_IfTodoListHasTooManyItems_ThrowException()
+        public void AddItemList_IfTodoListHasTooManyItems_ThrowArgumentOutOfRangeException()
         {
             TodoList todoList = new TodoList();
             try
@@ -32,7 +32,7 @@ namespace TestingTodoListApp.Tests
         }
 
         [TestMethod()]
-        public void AddItemToList_IfTaskLacksName_ThrowException()
+        public void AddItemToList_IfTaskLacksName_ThrowArgumentException()
         {
             TodoList todoList = new TodoList();
             try
@@ -48,7 +48,7 @@ namespace TestingTodoListApp.Tests
 
         }
         [TestMethod()]
-        public void AddItemToList_IfTaskIsNull_ThrowArgurment()
+        public void AddItemToList_IfTaskIsNull_ThrowArgurmentNullException()
         {
             TodoList todoList = new TodoList();
             try
@@ -65,7 +65,7 @@ namespace TestingTodoListApp.Tests
             Assert.Fail();
         }
         [TestMethod()]
-        public void RemoveItemFromList_IfItemDoesntExist_ThrowException()
+        public void RemoveItemFromList_IfItemDoesntExist_ThrowArgumentOutOfRangeExceptionException()
         {
             TodoList todoList = new TodoList();
             TodoTask todoTask = new TodoTask("astiat");
@@ -84,7 +84,7 @@ namespace TestingTodoListApp.Tests
             Assert.Fail();
         }
         [TestMethod()]
-        public void RemoveItemFromList_IfTaskIsNull_ThrowException()
+        public void RemoveItemFromList_IfTaskIsNull_ThrowArgumentNullException()
         {
             TodoList todoList = new TodoList();
             TodoTask todoTask = new TodoTask("astiat");
@@ -104,7 +104,7 @@ namespace TestingTodoListApp.Tests
             Assert.Fail();
         }
         [TestMethod()]
-        public void RemoveItemFromList_IfDoesntRemoveItem_ThrowException()
+        public void RemoveItemFromList_IfDoesntRemoveItem_ThrowArgumentOutOfRangeException()
         {
             TodoList todoList = new TodoList();
             TodoTask todoTask = new TodoTask("astiat");
@@ -121,7 +121,7 @@ namespace TestingTodoListApp.Tests
             Assert.Fail();
         }
         [TestMethod()]
-        public void CompleteItem_IfIdDoesntExist_ThrowException()
+        public void CompleteItem_IfIdDoesntExist_ThrowArgumentOutOfRangeException()
         {
             TodoList todoList = new TodoList();
             todoList.AddItemToList(new TodoTask("Do the dishes"));
@@ -139,7 +139,7 @@ namespace TestingTodoListApp.Tests
             Assert.Fail("lol");
         }
         [TestMethod()]
-        public void CompleteItem_IftodoItemtEmpty_ThrowException()
+        public void CompleteItem_IftodoItemtEmpty_ThrowArgumentException()
         {
             TodoList todoList = new TodoList();
             try
@@ -155,7 +155,7 @@ namespace TestingTodoListApp.Tests
         }
 
         [TestMethod()]
-        public void CompleteItem_IfTaskCompletedAlready_ThrowException()
+        public void CompleteItem_IfTaskCompletedAlready_ThrowArgumentException()
         {
             TodoList todoList = new TodoList();
             todoList.AddItemToList(new TodoTask("Do the dishes"));

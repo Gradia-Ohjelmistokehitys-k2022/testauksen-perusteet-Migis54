@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Warehouse;
+using System.Data;
 
 namespace WareHouse.Tests
 {
@@ -15,7 +16,7 @@ namespace WareHouse.Tests
         
         
         [TestMethod()]
-        public void AddToStock_IfItemInStockAlready_ThrowException()
+        public void AddToStock_IfItemInStockAlready_ThrowArgumentException()
         {
             WareHouse wareHouse = new();
             wareHouse.WareHouseSimulator();  
@@ -34,7 +35,7 @@ namespace WareHouse.Tests
             Assert.Fail();
         }
         [TestMethod()]
-        public void TakeFromStock_IfItemNotInStock_ThrowException()
+        public void TakeFromStock_IfItemNotInStock_ThrowArgumentException()
         {
             WareHouse wareHouse = new();
             wareHouse.WareHouseSimulator();
@@ -49,10 +50,11 @@ namespace WareHouse.Tests
                 StringAssert.Contains(ex.Message, "Oversold");
                 return;
             }
+            
             Assert.Fail();
         }
         [TestMethod()]
-        public void InStock_IfFlase_ThrowException()
+        public void InStock_IFalse_ThrowAsserFailedException()
         {
             WareHouse wareHouse = new();
             wareHouse.WareHouseSimulator();
@@ -67,11 +69,13 @@ namespace WareHouse.Tests
             }
             Assert.Fail();
         }
+        
+
         [TestMethod()]
-        public void StockCount_IfItemNameIsNull_ThrowException()
+        public void StockCount_IfItemNameIsNull_ThrowArgumentNullException()
         {
             WareHouse wareHouse = new();
-            wareHouse.WareHouseSimulator();
+            //wareHouse.WareHouseSimulator();
             string x = null;
             try
             {

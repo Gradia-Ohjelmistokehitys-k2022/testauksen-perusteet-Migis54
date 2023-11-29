@@ -14,7 +14,7 @@ namespace WareHouse
             
             _stockOfItems = new();
             Stock item1 = new("Hat", 2);
-            Stock item2 = new("Shoes", 3);
+            Stock item2 = new("shoe", -5);
             Stock item3 = new("Jacket", 5);
 
             _stockOfItems.Add(item1);
@@ -34,7 +34,6 @@ namespace WareHouse
 
         public bool InStock(string itemName)
         {
-            
             return _stockOfItems.Any(item => item.ItemName == itemName && item.Quantity > 0);
         }
 
