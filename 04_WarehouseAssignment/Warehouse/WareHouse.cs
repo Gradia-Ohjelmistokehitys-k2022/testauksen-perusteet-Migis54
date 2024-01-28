@@ -1,4 +1,5 @@
-﻿using Warehouse;
+﻿using System.Data.SqlTypes;
+using Warehouse;
 
 
 namespace WareHouse
@@ -10,24 +11,24 @@ namespace WareHouse
         private List<Stock> _stockOfItems;
         public void WareHouseSimulator()
         {
+            
             _stockOfItems = new();
             Stock item1 = new("Hat", 2);
-            Stock item2 = new("Shoes", 3);
+            Stock item2 = new("shoe", -5);
             Stock item3 = new("Jacket", 5);
 
             _stockOfItems.Add(item1);
             _stockOfItems.Add(item2);
             _stockOfItems.Add(item3);
         }
-
-        public WareHouse()
-        {
-
-        }
-
+        public WareHouse(){}
         public void AddToStocks(string itemName, int itemCount)
         {
             Stock stock = new(itemName, itemCount);
+            if(itemName == string.Empty)
+            {
+                throw new ArgumentException("itemName empty");
+            }
             _stockOfItems.Add(stock);
         }
 
@@ -47,12 +48,16 @@ namespace WareHouse
             }
             else
             {
-                throw new Exception("Oversold " + stock.ItemName);
+                throw new ArgumentException("Oversold");
             }
         }
 
         public int StockCount(string itemName)
         {
+            if(itemName == null)
+            {
+                throw new ArgumentNullException("Item Name Null");
+            }
             var matches = _stockOfItems.Where(item => item.ItemName == itemName);
             return matches.Count();
         }
